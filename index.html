@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RitQ — Vehicle Profile Dashboard</title>
+
+    <!-- Open-source map + icons -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <a class="brand" href="#dashboard" aria-label="RitQ home">
+          <img src="ritq-logo.png" alt="RitQ" class="brand-logo" />
+        </a>
+
+        <nav class="side-nav" aria-label="Main navigation">
+          <a href="#" class="nav-item"
+            ><i data-lucide="circle-dot"></i><span>Map Overview</span></a
+          >
+          <a href="#" class="nav-item active"
+            ><i data-lucide="grid-2x2"></i><span>Assets</span></a
+          >
+          <a href="#" class="nav-item"
+            ><i data-lucide="clock-3"></i
+            ><span class="time">Time Management</span></a
+          >
+          <div class="nav-group">
+            <button
+              class="nav-item nav-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="logbooks-menu"
+            >
+              <i data-lucide="book-open"></i><span>Logbooks</span
+              ><i class="chevron" data-lucide="chevron-down"></i>
+            </button>
+            <div class="submenu" id="logbooks-menu">
+              <a href="#daily-logbook">Daily Logbook</a>
+              <a href="#driver-hours">Driver Hours</a>
+              <a href="#vehicle-log">Vehicle Log</a>
+              <a href="#compliance">Compliance</a>
+            </div>
+          </div>
+          <div class="nav-group">
+            <button
+              class="nav-item nav-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="dashboards-menu"
+            >
+              <i data-lucide="layout-dashboard"></i><span>Dashboards</span
+              ><i class="chevron" data-lucide="chevron-down"></i>
+            </button>
+            <div class="submenu" id="dashboards-menu">
+              <a href="#fleet-dashboard">Fleet Overview</a>
+              <a href="#vehicle-dashboard">Vehicle Dashboard</a>
+              <a href="#driver-dashboard">Driver Dashboard</a>
+              <a href="#maintenance-dashboard">Maintenance</a>
+            </div>
+          </div>
+          <div class="nav-group">
+            <button
+              class="nav-item nav-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="tools-menu"
+            >
+              <i data-lucide="wrench"></i><span>Tools</span
+              ><i class="chevron" data-lucide="chevron-down"></i>
+            </button>
+            <div class="submenu" id="tools-menu">
+              <a href="#route-planner">Route Planner</a>
+              <a href="#geofences">Geofences</a>
+              <a href="#alerts">Alerts</a>
+              <a href="#import-export">Import / Export</a>
+            </div>
+          </div>
+          <div class="nav-group">
+            <button
+              class="nav-item nav-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="reports-menu"
+            >
+              <i data-lucide="file-text"></i><span>Reports</span
+              ><i class="chevron" data-lucide="chevron-down"></i>
+            </button>
+            <div class="submenu" id="reports-menu">
+              <a href="#trip-report">Trip Reports</a>
+              <a href="#fuel-report">Fuel Report</a>
+              <a href="#maintenance-report">Maintenance Report</a>
+              <a href="#activity-report">Activity Report</a>
+            </div>
+          </div>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="breadcrumbs">
+            <span>Monitoring</span><b>/</b><span>All Routes</span><b>/</b
+            ><strong>User Profile</strong><span class="dots">•••</span>
+          </div>
+
+          <div class="top-actions">
+            <label class="search">
+              <i data-lucide="search"></i>
+              <input
+                type="text"
+                placeholder="Asset Label, Asset ID, Registration"
+              />
+            </label>
+            <button class="filter-btn">
+              <i data-lucide="funnel"></i><span>Filter</span>
+            </button>
+            <button class="report-btn">
+              <i data-lucide="file-text"></i><span>Get Report</span>
+            </button>
+            <button class="icon-btn" aria-label="Notifications">
+              <i data-lucide="bell"></i><span class="notification-dot"></span>
+            </button>
+            <div class="avatar small-avatar">DK</div>
+            <button class="icon-btn more-btn" aria-label="More">
+              <i data-lucide="more-vertical"></i>
+            </button>
+            <button
+              class="mobile-menu"
+              id="mobileMenu"
+              aria-label="Toggle sidebar"
+            >
+              <i data-lucide="menu"></i>
+            </button>
+          </div>
+        </header>
+
+        <section class="content-grid">
+          <section class="vehicle-card card">
+            <div class="vehicle-main">
+              <div class="vehicle-heading">
+                <strong>Audi Model X</strong>
+                <span>MPARGFIJ0945KNGF</span>
+              </div>
+
+              <div class="metrics">
+                <div class="metric fuel">
+                  <div class="ring">
+                    <i data-lucide="fuel" class="metric-icon"></i
+                    ><span>32%</span>
+                  </div>
+                  <small>Fuel</small>
+                </div>
+                <div class="metric range">
+                  <div class="ring">
+                    <i data-lucide="gauge" class="metric-icon"></i
+                    ><span>157km</span>
+                  </div>
+                  <small>Range</small>
+                </div>
+                <div class="metric brake">
+                  <div class="ring">
+                    <i data-lucide="droplet" class="metric-icon"></i
+                    ><span>8%</span>
+                  </div>
+                  <small>Brake Fluid</small>
+                </div>
+              </div>
+
+              <div class="car-stage">
+                <div class="car-slider" id="carSlider">
+                  <div class="car-track">
+                    <article class="car-slide">
+                      <img src="./images/IMG_7853.PNG" alt="vehicle one" />
+                    </article>
+                    <!-- <article class="car-slide">
+                      <img src="./images/IMG_7844.PNG" alt="vehicle two" />
+                    </article> -->
+                    <article class="car-slide">
+                      <img src="./images/IMG_7845.PNG" alt="vehicle three" />
+                    </article>
+                    <article class="car-slide">
+                      <img src="./images/IMG_7846.PNG" alt="vehicle four" />
+                    </article>
+                    <article class="car-slide">
+                      <img src="./images/IMG_7847.PNG" alt="vehicle five" />
+                    </article>
+                    <article class="car-slide">
+                      <img src="./images/IMG_7848.PNG" alt="vehicle six" />
+                    </article>
+                    <article class="car-slide">
+                      <img src="./images/IMG_7849.PNG" alt="vehicle seven" />
+                    </article>
+                    <article class="car-slide">
+                      <img src="./images/IMG_7850.PNG" alt="vehicle eight" />
+                    </article>
+                    <article class="car-slide">
+                      <img src="./images/IMG_7851.PNG" alt="vehicle nine" />
+                    </article>
+                    <article class="car-slide">
+                      <img src="./images/IMG_7852.PNG" alt="vehicle ten" />
+                    </article>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tyre-grid">
+                <div class="tyre-left-wrapper">
+                  <div class="tyre left">
+                    <span><i data-lucide="circle"></i> Left</span
+                    ><strong>25 psi</strong>
+                  </div>
+                  <div class="tyre">
+                    <span><i data-lucide="circle"></i> Right</span
+                    ><strong>26 psi</strong>
+                  </div>
+                </div>
+                <div class="tyre-right-wrapper">
+                  <div class="tyre left">
+                    <span><i data-lucide="circle"></i> Left</span
+                    ><strong>25 psi</strong>
+                  </div>
+                  <div class="tyre right warning">
+                    <span><i data-lucide="triangle-alert"></i> Right</span
+                    ><strong>13 psi</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <aside class="vehicle-info">
+              <div id="map"></div>
+              <div class="specs">
+                <p><span>Body Type:</span><b>UTILITY CAB</b></p>
+                <p><span>Colour:</span><b>White</b></p>
+                <p><span>GVM:</span><b>5 tons</b></p>
+                <p><span>Registration:</span><b>637VVJ</b></p>
+                <p><span>Registration Exp:</span><b>2019/10/14</b></p>
+                <p><span>Registration State:</span><b>QLD</b></p>
+                <p><span>Registration Status:</span><b>REGISTERED</b></p>
+                <p><span>Year:</span><b>2015</b></p>
+              </div>
+            </aside>
+          </section>
+
+          <aside class="right-column">
+            <section class="activity-card card">
+              <div class="card-head">
+                <h3>Activity</h3>
+                <a href="#">View All</a>
+              </div>
+              <div class="activity-copy">
+                <span>Travelled last month</span><strong>50 km</strong
+                ><em><i data-lucide="trending-up"></i> 13%</em>
+              </div>
+              <div class="activity-chart">
+                <svg
+                  viewBox="0 0 520 130"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M0 76 C35 50 66 48 104 68 S180 88 212 72 S274 82 305 98 S370 105 406 87 S472 47 520 54"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  />
+                  <circle cx="212" cy="72" r="5" fill="currentColor" />
+                  <circle cx="305" cy="98" r="4" fill="currentColor" />
+                  <circle cx="406" cy="87" r="4" fill="currentColor" />
+                </svg>
+                <div class="chart-labels">
+                  <span>12/09</span><span>12/09</span><span>12/09</span
+                  ><span>12/09</span><span>12/09</span><span>12/09</span>
+                </div>
+              </div>
+            </section>
+
+            <section class="reminder-card card">
+              <div class="card-head">
+                <h3>Reminders (1)</h3>
+                <a href="#">View All</a>
+              </div>
+              <div class="card-body">
+                <h4>Service Reminders</h4>
+                <div class="reminder-grid">
+                  <div><b>155 000km</b><small>01/01/2021</small></div>
+                  <div><b>165 000km</b><small>03/08/2021</small></div>
+                  <div><b>175 000km</b><small>05/12/2021</small></div>
+                  <div><b>185 000km</b><small>10/28/2021</small></div>
+                </div>
+              </div>
+              <div class="reminder-footer">
+                <button class="add-btn">Add</button>
+                <div class="user-chip">
+                  <span class="avatar">DB</span><b>David Baker</b>
+                </div>
+              </div>
+            </section>
+          </aside>
+        </section>
+
+        <section class="tabs-section">
+          <div class="tabs" id="tabs" role="tablist">
+            <button class="tab active" data-tab="dashboard">Dashboard</button>
+            <button class="tab" data-tab="trips">Trips</button>
+            <button class="tab" data-tab="events">Events</button>
+            <button class="tab" data-tab="drivers">Drivers</button>
+            <button class="tab" data-tab="sensors">Sensors</button>
+            <button class="tab" data-tab="devices">Devices</button>
+            <button class="tab" data-tab="logs">Logs</button>
+            <button class="tab-more" aria-label="More tabs">
+              <i data-lucide="more-vertical"></i>
+            </button>
+          </div>
+
+          <div class="tab-panel card" id="tabPanel">
+            <div class="dashboard-panel" id="dashboardPanel">
+              <div class="driver-profile">
+                <div class="avatar-wrapper">
+                  <div class="driver-avatar">DB</div>
+                  <div class="avatar-label">
+                    <span class="dot">●</span><span>ENABLED</span>
+                  </div>
+                </div>
+
+                <div class="driver-name">
+                  <h2>
+                    <span>David Baker</span> <i data-lucide="smartphone"></i>
+                  </h2>
+                  <p>
+                    <i data-lucide="grid-2x2"></i> Group: <b>WA</b>
+                    <i data-lucide="user-round"></i> User: <b>David M.</b>
+                  </p>
+                  <div class="tags">
+                    <span>Cold Transport</span><span>Petrol</span>
+                  </div>
+                </div>
+              </div>
+              <div class="profile-data">
+                <div><span>Phone:</span><b>398594860398</b></div>
+                <div><span>ODD:</span><b>124 km</b></div>
+                <div><span>Make:</span><b>398594860398</b></div>
+                <div><span>Runtime:</span><b>2hr 43min</b></div>
+                <div><span>Model:</span><b>398594860398</b></div>
+                <div><span>Model:</span><b>398594860398</b></div>
+              </div>
+              <div class="info-panel">
+                <div class="info-inner-panel">
+                  <div class="info-title">
+                    <h3>Info</h3>
+                    <button class="add-btn">Add</button>
+                  </div>
+                  <div class="info-row">
+                    <b>NF34546467575</b><small>Engine Number</small
+                    ><time>11/07/2019</time><i data-lucide="calendar-days"></i>
+                  </div>
+                  <div class="info-row second">
+                    <b>04/2017</b><small>Manufactured Date</small
+                    ><time>11/07/2019</time><i data-lucide="calendar-days"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="placeholder-panel" id="placeholderPanel"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
