@@ -884,6 +884,10 @@ a {
   .vehicle-card {
     grid-template-columns: minmax(0, 1fr) 220px;
   }
+  .sidebar {
+    background: #f9fafc;
+    border-right: 1px solid #edf0f5;
+  }
 }
 @media (max-width: 720px) {
   .main {
