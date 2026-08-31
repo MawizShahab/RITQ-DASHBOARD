@@ -1504,6 +1504,7 @@ a {
   .info-row {
     padding: 14px 0;
     column-gap: 16px;
+    align-items: center;
   }
 
   .info-row b {
@@ -1512,10 +1513,18 @@ a {
 
   .info-row small,
   .info-row time {
-    font-size: 10px;
+    font-size: 0.8rem;
+  }
+
+  .info-row time {
+    margin-top: 2px;
   }
 
   .info-row svg {
     width: 15px;
+  }
+
+  .avatar-label span{
+    font-size: 1.2rem;
   }
 }
