@@ -890,7 +890,7 @@ a {
     border-right: 1px solid #edf0f5;
   }
 }
-@media (max-width: 720px) {
+@media (max-width: 770px) {
   .main {
     padding: 12px;
   }
@@ -933,7 +933,7 @@ a {
     grid-template-columns: 1fr 1fr;
   }
   #map {
-    height: 180px;
+    height: auto;
   }
   .specs {
     padding: 18px 14px;
@@ -959,7 +959,7 @@ a {
     margin: 28px -4px 0;
   }
   .car-slide img {
-    height: 175px;
+    height: 275px;
     width: 100%;
   }
   .tyre-grid {
@@ -1457,7 +1457,7 @@ a {
   }
 
   .driver-name p {
-    font-size: 11px;
+    font-size: 0.8rem;
     gap: 5px;
   }
 
@@ -1471,7 +1471,7 @@ a {
   }
 
   .tags span {
-    font-size: 10px;
+    font-size: 1.2rem;
     padding: 7px 11px;
   }
 
@@ -1482,7 +1482,7 @@ a {
 
   .profile-data div {
     gap: 9px;
-    font-size: 10px;
+    font-size: 1.2rem;
   }
 
   /* .profile-data span {
@@ -1498,7 +1498,7 @@ a {
   }
 
   .info-title h3 {
-    font-size: 14px;
+    font-size: 1.2rem;
   }
 
   .info-row {
@@ -1507,12 +1507,12 @@ a {
   }
 
   .info-row b {
-    font-size: 10px;
+    font-size: 1rem;
   }
 
   .info-row small,
   .info-row time {
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .info-row svg {
