@@ -814,6 +814,26 @@ a {
   gap: 5px;
   align-items: center;
 }
+
+.specs p,
+.tyre strong,
+.reminder-card h4,
+.card-head a,
+.add-btn,
+.user-chip b,
+.profile-data span,
+.profile-data b,
+.info-title h3,
+.info-row b {
+  font-size: 12px;
+}
+
+.info-row small,
+.info-row time,
+.driver-name p,
+.tags span{
+  font-size: 10px;
+}
 @media (max-width: 1180px) {
   .main {
     padding: 20px;
@@ -891,7 +911,7 @@ a {
   }
 }
 
-@media screen and (min-width: 961px) and (max-width: 1025px) {
+@media screen and (min-width: 961px) and (max-width: 1250px) {
   .vehicle-card {
     display: flex;
     flex-direction: column;
@@ -908,10 +928,39 @@ a {
   .tyre-grid {
     margin-top: -60px;
   }
-  .small-avatar {
+  .specs p,
+  .reminder-card h4,
+  .reminder-grid b,
+  .card-head a,
+  .profile-data div span,
+  .info-title h3,
+  .info-title button,
+  .reminder-footer button,
+  .user-chip,
+  .tags span,
+  .driver-name h2 {
+    font-size: 12px;
+  }
+  .reminder-grid small,
+  .profile-data div b {
+    font-size: 10px;
+  }
+
+  .driver-name .tags {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .driver-name .tags span {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* .small-avatar {
     width: 45px;
     height: 25px;
-  }
+  } */
 }
 @media (max-width: 770px) {
   .main {
